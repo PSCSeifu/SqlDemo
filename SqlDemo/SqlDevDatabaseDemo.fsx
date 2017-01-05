@@ -8,20 +8,20 @@ open System.Data.Linq
 open Microsoft.FSharp.Data.TypeProviders
 open Microsoft.FSharp.Linq
 
-type dbSchema = SqlDataConnection<"Data Source=DEV-SERVER2;User ID=sa;Password=pscpayroll;Initial Catalog=eServices-TEST2;Pooling=False">
+type dbSchema = SqlDataConnection<"">
 let db = dbSchema.GetDataContext()
 
 ///Enable the logging of database activity to the console.
 //db.DataContext.Log <- System.Console.Out 
 
 //------------------------------------------------------------------------------  
-//let query1 = 
-//    query {
-//        for row in db.HelpTopicItem do 
-//        where (row.Id < 12)
-//        select row
-//    }
-//query1 |> Seq.iter (fun row -> printfn "%s %s" row.DisplayName row.Body)
+let query1 = 
+    query {
+        for row in db.HelpTopicItem do 
+        where (row.Id < 12)
+        select row
+    }
+query1 |> Seq.iter (fun row -> printfn "%s %s" row.DisplayName row.Body)
 
 //------------------------------------------------------------------------------
 ///Second query without the query variable and using the pipeline operator.
